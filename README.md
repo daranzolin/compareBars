@@ -1,29 +1,18 @@
----
-output: github_document
----
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "README-"
-)
-```
-
 # compareBars
 
->"Less is more." 
->"Simplify simplify." 
+> “Less is more.” “Simplify simplify.”
 
-The goal of `compareBars` is to reduce the clutter of comparative bar charts.
+The goal of `compareBars` is to reduce the clutter of comparative bar
+charts.
 
 ## Installation
 
 You can install compareBars from github with:
 
-```{r gh-installation, eval = FALSE}
+``` r
 # install.packages("devtools")
 devtools::install_github("daranzolin/compareBars")
 ```
@@ -32,7 +21,7 @@ devtools::install_github("daranzolin/compareBars")
 
 Consider the following bar charts:
 
-```{r warning=FALSE, message=FALSE}
+``` r
 library(tidyverse)
 library(gapminder)
 library(patchwork)
@@ -48,12 +37,17 @@ p2 <- ggplot(d, aes(year, pop, fill = continent)) + geom_col(position = "dodge")
 p1 + p2 + plot_layout(ncol = 1)
 ```
 
+![](README-unnamed-chunk-2-1.png)<!-- -->
 
-When did the total population of the Americas exceed the total population of Europe? With the top chart, you'd have to guess sometime between 1960 and 1980, but it's hard to tell at a glance. And while it's easier to tell with the second plot, the clarity comes at the sake of clutter. 
+When did the total population of the Americas exceed the total
+population of Europe? With the top chart, you’d have to guess sometime
+between 1960 and 1980, but it’s hard to tell at a glance. And while it’s
+easier to tell with the second plot, the clarity comes at the sake of
+clutter.
 
-`compareBars` offers a simpler, cleaner alternative with d3.js: 
+`compareBars` offers a simpler, cleaner alternative with d3.js:
 
-```{r eval=FALSE}
+``` r
 library(compareBars)
 d %>% 
   spread(continent, pop) %>% 
@@ -63,13 +57,17 @@ d %>%
 
 ![cb1](compareBars1.png)
 
-Not only is the moment when the Americas' population exceeded Europe's immediately clear, but you also get a much better sense of the magnitude by year.
+Not only is the moment when the Americas’ population exceeded Europe’s
+immediately clear, but you also get a much better sense of the magnitude
+by year.
 
 ## Other options
 
-You can adjust the chart by adding axis labels, titles, subtitles, specifying your own fill colors, changing the label fonts, and even the bar orientation:
+You can adjust the chart by adding axis labels, titles, subtitles,
+specifying your own fill colors, changing the label fonts, and even the
+bar orientation:
 
-```{r eval=FALSE}
+``` r
 d %>% 
   spread(continent, pop) %>% 
   mutate(year = factor(year)) %>% 
@@ -90,9 +88,11 @@ d %>%
 
 ## Special Thanks
 
-Special thanks of course to Mike Bostock, the creator of d3.js and whose blocks inspired the creation of `compareBars`. Thanks also to John Lewis who first helped try to puzzle through a ggplot alternative. 
+Special thanks of course to Mike Bostock, the creator of d3.js and whose
+blocks inspired the creation of `compareBars`. Thanks also to John Lewis
+who first helped try to puzzle through a ggplot alternative.
 
 ## Known Issues
 
-* Resizing. I can't figure it out.
-* Interactivity? Maybe a tooltip revealing the maximum value.
+  - Resizing. I can’t figure it out.
+  - Interactivity? Maybe a tooltip revealing the maximum value.

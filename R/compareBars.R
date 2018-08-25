@@ -1,7 +1,38 @@
-#' compareBars
+#' Function for creating simple comparative bar charts.
 #'
-#' Simplify comparative bar charts with d3.js.
+#' Simplify comparative bar charts with d3.js: two values, one bar. For each level of an ordinal variable,
+#' compareBars compares the two values, and returns the smaller as a uniform color, and the larger
+#' remainder as a distinct color.
 #'
+#' @param data a data frame object in wide form. Must have one string/factor column, and two numeric
+#' columns to compare.
+#' @param ordinalVar unquoted name of the ordinal variable
+#' @param compareVar1 unquoted name of a numeric value to compare
+#' @param compareVar2 unquoted name of another numeric value to compare
+#' @param width width of the chart in pixels
+#' @param height height of the chart in pixels
+#' @param orientation if "vertical", the bars will render vertically along the x-axis. If 'horizontal',
+#' the bars will render horizontally along the y-axis.
+#' @param xLabel optional label for the x-axis
+#' @param yLabel optional label for the y-axis
+#' @param titleLabel optional label for the title
+#' @param subtitleLabel optional label for the subtitle
+#' @param compareVarFill1 fill color for one of the levels
+#' @param compareVarFill2 fill color for the other level
+#' @param minFillColor fill color for the smaller value
+#' @param fontFamily font family for the labels
+#'
+#'@examples
+#'\dontrun{
+#' library(gapminder)
+#' library(tidyverse)
+#' gapminder %>%
+#'  group_by(continent, year) %>%
+#'  summarize(populations = sum(pop)) %>%
+#'  spread(continent, populations) %>%
+#'  mutate(year = factor(year)) %>%
+#'  compareBars(year, Americas, Europe)
+#'}
 #' @import htmlwidgets
 #'
 #' @export
@@ -9,8 +40,8 @@ compareBars <- function(data,
                           ordinalVar = NULL,
                           compareVar1 = NULL,
                           compareVar2 = NULL,
-                          width = 800,
-                          height = 500,
+                          width = NULL,
+                          height = NULL,
                           orientation = "vertical",
                           xLabel = "",
                           yLabel = "",
@@ -18,7 +49,8 @@ compareBars <- function(data,
                           subtitleLabel = "",
                           compareVarFill1 = "#0072B2",
                           compareVarFill2 = "#E69F00",
-                          minFillColor = "#ddd") {
+                          minFillColor = "#ddd",
+                          fontFamily = "sans-serif") {
 
   if (!inherits(data, "data.frame")) {
     stop("data must be a data frame.", call. = FALSE)
@@ -46,7 +78,8 @@ compareBars <- function(data,
     compareVarFill1 = compareVarFill1,
     compareVarFill2 = compareVarFill2,
     minFillColor = minFillColor,
-    orientation = orientation
+    orientation = orientation,
+    fontFamily = fontFamily
   )
 
   x = list(
@@ -59,7 +92,8 @@ compareBars <- function(data,
     x,
     width = width,
     height = height,
-    package = 'compareBars'
+    package = 'compareBars',
+    sizingPolicy = htmlwidgets::sizingPolicy()
   )
 }
 
