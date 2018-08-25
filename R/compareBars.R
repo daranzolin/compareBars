@@ -66,7 +66,7 @@ compareBars <- function(data,
 
   data <- dplyr::select(data, !!!ov, !!!cv1, !!!cv2)
 
-  if (sum(unlist(lapply(data, is.numeric))) != 2 && sum(!unlist(lapply(iris, is.numeric))) != 1) {
+  if (sum(unlist(lapply(data, is.numeric))) != 2 && sum(!unlist(lapply(data, is.numeric))) != 1) {
     stop("ordinalVar must be a string or factor, and compareVar1 and compareVar2 must be numeric.")
   }
 
