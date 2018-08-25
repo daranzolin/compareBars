@@ -3,7 +3,9 @@
 
 # compareBars
 
-> “Less is more.” “Simplify simplify.”
+> “Less is more.”
+
+> “Simplify simplify.”
 
 The goal of `compareBars` is to reduce the clutter of comparative bar
 charts.
