@@ -21,6 +21,7 @@
 #' @param compareVarFill2 fill color for the other level
 #' @param minFillColor fill color for the smaller value
 #' @param fontFamily font family for the labels
+#' @param axisFormat axis formatting option, cf. d3-format on github
 #'
 #'@examples
 #'\dontrun{
@@ -50,7 +51,8 @@ compareBars <- function(data,
                           compareVarFill1 = "#0072B2",
                           compareVarFill2 = "#E69F00",
                           minFillColor = "#ddd",
-                          fontFamily = "sans-serif") {
+                          fontFamily = "sans-serif",
+                          axisFormat = ".0s") {
 
   if (!inherits(data, "data.frame")) {
     stop("data must be a data frame.", call. = FALSE)
@@ -80,7 +82,8 @@ compareBars <- function(data,
     compareVarFill2 = compareVarFill2,
     minFillColor = minFillColor,
     orientation = orientation,
-    fontFamily = fontFamily
+    fontFamily = fontFamily,
+    axisFormat = axisFormat
   )
 
   x = list(

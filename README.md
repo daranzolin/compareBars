@@ -7,6 +7,8 @@
 
 > “Simplify simplify.”
 
+![Alt Text](https://media.giphy.com/media/DMUJa4jD4wACblmNdc/giphy.gif)
+
 The goal of `compareBars` is to reduce the clutter of comparative bar
 charts.
 
@@ -61,7 +63,11 @@ d %>%
 
 Not only is the moment when the Americas’ population exceeded Europe’s
 immediately clear, but you also get a much better sense of the magnitude
-by year.
+by year. Approximating this kind of chart with ggplot requires a great
+deal of reshaping and wizardry.
+
+An interactive tooltip shows the magnitude of difference between the two
+levels.
 
 ## Other options
 
@@ -88,6 +94,8 @@ d %>%
 
 ![cb2](compareBars2.png)
 
+Note that you must reshape your data into a ‘non-tidy’ form.
+
 ## Special Thanks
 
 Special thanks of course to Mike Bostock, the creator of d3.js and whose
@@ -97,4 +105,3 @@ who first helped try to puzzle through a ggplot alternative.
 ## Known Issues
 
   - Resizing. I can’t figure it out.
-  - Interactivity? Maybe a tooltip revealing the maximum value.

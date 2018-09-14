@@ -49,7 +49,7 @@ HTMLWidgets.widget({
               .call(d3.axisLeft(y0)
                   .tickValues(d3.scaleLinear()
                   .domain(y0.domain())
-                  .ticks()).tickFormat(d3.format(".0s")))
+                  .ticks()).tickFormat(d3.format(opts.settings.axisFormat)))
               .call(g => g.selectAll(".tick line")
                   .clone()
                   .attr("stroke-opacity", 0.2)
@@ -73,7 +73,7 @@ HTMLWidgets.widget({
                   .attr("x", d => x0(d[oc]))
                   .attr("y", d => y0(Math.min(d[c1], d[c2])))
                   .attr("width", x0.bandwidth())
-                  .attr("height", d => y0(0) - y0(Math.min(d[c1], d[c2]))) ;
+                  .attr("height", d => y0(0) - y0(Math.min(d[c1], d[c2])));
 
           svg.append("g")
               .selectAll("rect")
@@ -84,6 +84,27 @@ HTMLWidgets.widget({
                   .attr("x", d => x0(d[oc]))
                   .attr("width", x0.bandwidth())
                   .attr("height", d => y0(Math.min(d[c1], d[c2])) - y0(Math.max(d[c1], d[c2])));
+
+          let tip = d3.tip()
+              .attr('class', 'd3-tipV')
+              .offset([-10, 0])
+              .html(function(d) {
+                return `<span style='color:${d[c1] < d[c2] ? opts.settings.compareVarFill1 : opts.settings.compareVarFill2}'> ${d3.format(",.2r")(Math.abs(d[c1] - d[c2]))}</span>`;
+              });
+
+        svg.call(tip);
+
+          svg.append("g")
+              .style("opacity", 0)
+              .selectAll("rect")
+              .data(data)
+                .enter().append("rect")
+                  .attr("x", d => x0(d[oc]))
+                  .attr("y", d => y0(Math.max(d[c1], d[c2])))
+                  .attr("width", x0.bandwidth())
+                  .attr("height", d => y0(0) - y0(Math.max(d[c1], d[c2])))
+                  .on('mouseover', tip.show)
+                  .on('mouseout', tip.hide);
 
           svg.append("text")
               .attr("class", "x label")
@@ -164,7 +185,7 @@ HTMLWidgets.widget({
                   .attr("transform", `translate(0,${height - margin.bottom})`)
                   .call(g => g.append("g"))
                   .call(d3.axisBottom(x0)
-                      .tickFormat(d3.format(".0s")))
+                      .tickFormat(d3.format(opts.settings.axisFormat)))
                   .call(g => g.selectAll(".domain").remove())
                   .call(g => g.selectAll(".tick line")
                     .clone()
@@ -183,6 +204,25 @@ HTMLWidgets.widget({
           svg.append("g")
               .call(xAxis);
 
+            //Legend box
+            svg.append("rect")
+                .style("fill", opts.settings.compareVarFill1)
+                .attr("x", width - (margin.left))
+                .attr("y", height/4)
+                .attr("width", 17)
+                .attr("height", 17);
+
+            let tip = d3.tip()
+              .attr('class', 'd3-tipH')
+              .direction('e')
+              .offset([0, 10])
+              .html(function(d) {
+                return `<span style='color:${d[c1] < d[c2] ? opts.settings.compareVarFill1 : opts.settings.compareVarFill2}'> ${d3.format(",.2r")(Math.abs(d[c1] - d[c2]))}</span>`;
+              });
+
+        svg.call(tip);
+
+          //Min fill bar
           svg.append("g")
               .attr("fill", opts.settings.minFillColor)
             .selectAll("rect")
@@ -203,13 +243,20 @@ HTMLWidgets.widget({
                 .attr("width", d => x0(Math.max(d[c1], d[c2])) - x0(Math.min(d[c1], d[c2])))
                 .attr("height", d => y0.bandwidth());
 
-            svg.append("rect")
-                .style("fill", opts.settings.compareVarFill1)
-                .attr("x", width - (margin.left))
-                .attr("y", height/4)
-                .attr("width", 17)
-                .attr("height", 17);
+            svg.append("g")
+              .style('opacity', 0)
+            .selectAll("rect")
+            .data(data)
+            .enter().append("rect")
+              .attr("x", x0(0))
+              .attr("y", d => y0(d[oc]))
+              .attr("width", d => x0(Math.max(d[c1], d[c2])) - x0(0))
+              .attr("height", d => y0.bandwidth())
+              .on('mouseover', tip.show)
+              .on('mouseout', tip.hide);
 
+
+            //Legend box
             svg.append("rect")
               .style("fill", opts.settings.compareVarFill2)
               .attr("x", width - (margin.left))
@@ -217,6 +264,8 @@ HTMLWidgets.widget({
               .attr("width", 17)
               .attr("height", 17);
 
+
+            //Title label
             svg.append("text")
                   .attr("x", margin.left)
                   .attr("y", margin.top / 3)

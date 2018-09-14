@@ -1,6 +1,6 @@
 Package: compareBars
 Title: Simplify comparative bar charts with d3.js
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("David", "Ranzolin", email = "daranzolin@gmail.com", role = c("aut", "cre"))
 Description: Take a data frame with an ordinal variable and two numeric variables and create a comparative bar chart.
 Depends: R (>= 3.4.1)
