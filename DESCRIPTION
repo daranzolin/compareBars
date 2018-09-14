@@ -2,7 +2,9 @@ Package: compareBars
 Title: Simplify comparative bar charts with d3.js
 Version: 0.0.1
 Authors@R: person("David", "Ranzolin", email = "daranzolin@gmail.com", role = c("aut", "cre"))
-Description: Take a data frame with an ordinal variable and two numeric variables and create a comparative bar chart.
+Description: There are several ways to create a comparative bar chart. This package produces a bar chart
+  that uses one fill color to specify the smaller of two variables, and two fill colors to indicate the
+  magnitude of difference.
 Depends: R (>= 3.4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
