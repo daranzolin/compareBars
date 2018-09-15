@@ -22,6 +22,7 @@
 #' @param minFillColor fill color for the smaller value
 #' @param fontFamily font family for the labels
 #' @param axisFormat axis formatting option, cf. d3-format on github
+#' @param tooltipFormat tooltip formatting option, cf. d3-format on github
 #'
 #'@examples
 #'\dontrun{
@@ -52,7 +53,8 @@ compareBars <- function(data,
                           compareVarFill2 = "#E69F00",
                           minFillColor = "#ddd",
                           fontFamily = "sans-serif",
-                          axisFormat = ".0s") {
+                          axisFormat = ".0s",
+                          tooltipFormat = ".0s") {
 
   if (!inherits(data, "data.frame")) {
     stop("data must be a data frame.", call. = FALSE)
@@ -83,7 +85,8 @@ compareBars <- function(data,
     minFillColor = minFillColor,
     orientation = orientation,
     fontFamily = fontFamily,
-    axisFormat = axisFormat
+    axisFormat = axisFormat,
+    tooltipFormat = tooltipFormat
   )
 
   x = list(

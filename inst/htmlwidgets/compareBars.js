@@ -24,7 +24,7 @@ HTMLWidgets.widget({
         const c1 = cols[1];
         const c2 = cols[2];
 
-        const margin = ({top: 80, right: 100, bottom: 50, left: 75});
+        const margin = ({top: 80, right: 120, bottom: 50, left: 100});
 
         if (opts.settings.orientation === 'vertical') {
 
@@ -89,7 +89,7 @@ HTMLWidgets.widget({
               .attr('class', 'd3-tipV')
               .offset([-10, 0])
               .html(function(d) {
-                return `<span style='color:${d[c1] < d[c2] ? opts.settings.compareVarFill1 : opts.settings.compareVarFill2}'> ${d3.format(",.2r")(Math.abs(d[c1] - d[c2]))}</span>`;
+                return `<span style='color:${d[c1] < d[c2] ? opts.settings.compareVarFill1 : opts.settings.compareVarFill2}'> ${d3.format(opts.settings.tooltipFormat)(Math.abs(d[c1] - d[c2]))}</span>`;
               });
 
         svg.call(tip);
@@ -217,7 +217,7 @@ HTMLWidgets.widget({
               .direction('e')
               .offset([0, 10])
               .html(function(d) {
-                return `<span style='color:${d[c1] < d[c2] ? opts.settings.compareVarFill1 : opts.settings.compareVarFill2}'> ${d3.format(",.2r")(Math.abs(d[c1] - d[c2]))}</span>`;
+                return `<span style='color:${d[c1] < d[c2] ? opts.settings.compareVarFill1 : opts.settings.compareVarFill2}'> ${d3.format(opts.settings.tooltipFormat)(Math.abs(d[c1] - d[c2]))}</span>`;
               });
 
         svg.call(tip);

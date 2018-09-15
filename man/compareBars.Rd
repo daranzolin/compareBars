@@ -9,7 +9,7 @@ compareBars(data, ordinalVar = NULL, compareVar1 = NULL,
   orientation = "vertical", xLabel = "", yLabel = "", titleLabel = "",
   subtitleLabel = "", compareVarFill1 = "#0072B2",
   compareVarFill2 = "#E69F00", minFillColor = "#ddd",
-  fontFamily = "sans-serif", axisFormat = ".0s")
+  fontFamily = "sans-serif", axisFormat = ".0s", tooltipFormat = ".0s")
 }
 \arguments{
 \item{data}{a data frame object in wide form. Must have one string/factor column, and two numeric
@@ -45,6 +45,8 @@ the bars will render horizontally along the y-axis.}
 \item{fontFamily}{font family for the labels}
 
 \item{axisFormat}{axis formatting option, cf. d3-format on github}
+
+\item{tooltipFormat}{tooltip formatting option, cf. d3-format on github}
 }
 \description{
 Simplify comparative bar charts with d3.js: two values, one bar. For each level of an ordinal variable,
