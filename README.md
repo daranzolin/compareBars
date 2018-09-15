@@ -59,7 +59,7 @@ d %>%
   compareBars(year, Americas, Europe)
 ```
 
-![cb1](compareBars1.png)
+![cb1](inst/img/compareBarstip.png)
 
 Not only is the moment when the Americas’ population exceeded Europe’s
 immediately clear, but you also get a much better sense of the magnitude
@@ -92,7 +92,7 @@ d %>%
               orientation = "horizontal")
 ```
 
-![cb2](compareBars2.png)
+![cb2](inst/img/compareBars2.png)
 
 Note that you must reshape your data into a ‘non-tidy’ form.
 
