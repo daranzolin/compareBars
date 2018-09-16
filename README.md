@@ -44,7 +44,7 @@ p2 <- ggplot(d, aes(year, pop, fill = continent)) + geom_col(position = "dodge")
 p1 + p2 + plot_layout(ncol = 1)
 ```
 
-![](README-unnamed-chunk-2-1.png)<!-- -->
+![cb1](inst/img/ggplots.png)
 
 When did the total population of the Americas exceed the total
 population of Europe? With the top chart, you’d have to guess sometime
@@ -98,13 +98,3 @@ d %>%
 ![cb2](inst/img/compareBars2.png)
 
 Note that you must reshape your data into a ‘non-tidy’ form.
-
-## Special Thanks
-
-Special thanks of course to Mike Bostock, the creator of d3.js and whose
-blocks inspired the creation of `compareBars`. Thanks also to John Lewis
-who first helped try to puzzle through a ggplot alternative.
-
-## Known Issues
-
-  - Resizing. I can’t figure it out.

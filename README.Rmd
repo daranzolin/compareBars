@@ -37,7 +37,7 @@ devtools::install_github("daranzolin/compareBars")
 
 Consider the following bar charts:
 
-```{r warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE, eval=FALSE}
 library(tidyverse)
 library(gapminder)
 library(patchwork)
@@ -53,6 +53,7 @@ p2 <- ggplot(d, aes(year, pop, fill = continent)) + geom_col(position = "dodge")
 p1 + p2 + plot_layout(ncol = 1)
 ```
 
+![cb1](inst/img/ggplots.png)
 
 When did the total population of the Americas exceed the total population of Europe? With the top chart, you'd have to guess sometime between 1960 and 1980, but it's hard to tell at a glance. And while it's easier to tell with the second plot, the clarity comes at the sake of clutter. 
 
@@ -96,11 +97,3 @@ d %>%
 ![cb2](inst/img/compareBars2.png)
 
 Note that you must reshape your data into a 'non-tidy' form.
-
-## Special Thanks
-
-Special thanks of course to Mike Bostock, the creator of d3.js and whose blocks inspired the creation of `compareBars`. Thanks also to John Lewis who first helped try to puzzle through a ggplot alternative. 
-
-## Known Issues
-
-* Resizing. I can't figure it out.
