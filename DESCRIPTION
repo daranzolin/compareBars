@@ -1,5 +1,5 @@
 Package: compareBars
-Title: Simplify comparative bar charts with d3.js
+Title: Simplify Comparative Bar Charts with D3.js
 Version: 0.0.1
 Authors@R: person("David", "Ranzolin", email = "daranzolin@gmail.com", role = c("aut", "cre"))
 Description: There are several ways to create a comparative bar chart. This package produces a bar chart
