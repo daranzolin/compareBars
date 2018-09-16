@@ -10,7 +10,8 @@ status](https://travis-ci.org/daranzolin/compareBars.svg?branch=master)](https:/
 
 > “Simplify simplify.”
 
-![Alt Text](https://media.giphy.com/media/DMUJa4jD4wACblmNdc/giphy.gif)
+\[Alt
+Text\]![pow\!](https://raw.githubusercontent.com/daranzolin/compareBars/master/inst/img/cbgif2.gif)
 
 The goal of `compareBars` is to reduce the clutter of comparative bar
 charts.
